@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\NexusPilot-Projects-Service-src.props" />
+</Project>

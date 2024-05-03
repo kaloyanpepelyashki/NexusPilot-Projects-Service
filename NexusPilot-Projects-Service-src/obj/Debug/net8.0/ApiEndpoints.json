@@ -1,0 +1,18 @@
+[
+  {
+    "ContainingType": "NexusPilot_Projects_Service_src.Controllers.CreationController",
+    "Method": "CreateProject",
+    "RelativePath": "api/Creation/project",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "projectObj",
+        "Type": "NexusPilot_Projects_Service_src.Controllers.CreationController\u002BProjectCreationObject",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
