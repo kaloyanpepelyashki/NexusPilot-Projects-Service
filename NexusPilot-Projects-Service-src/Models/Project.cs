@@ -28,7 +28,7 @@ namespace NexusPilot_Projects_Service_src.Models
         public DateTime EndDate { get; set; }
 
         [Column("project_owneruuid")]
-        public string OwnerId { get; set; }
+        public Guid OwnerId { get; set; }
 
     }
 }

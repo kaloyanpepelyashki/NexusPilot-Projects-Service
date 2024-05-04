@@ -10,7 +10,7 @@ namespace NexusPilot_Projects_Service_src.Controllers
     [ApiController]
     public class CreationController : ControllerBase
     {
-        private readonly ProjectService _projectService;
+        private ProjectService _projectService;
 
         public CreationController()
         {
@@ -18,11 +18,13 @@ namespace NexusPilot_Projects_Service_src.Controllers
         }
         
         [HttpPost("project")]
+        //Expects to receive a json object
         public async Task<ActionResult> CreateProject([FromBody] ProjectCreationObject projectObj)
         {
             try
             {
-                var result = await _projectService.CreateNewProject(projectObj.UserUUId, projectObj.Title, projectObj.Description, projectObj.TumbnailImageUrl, projectObj.BackgroundImageUrl, projectObj.StartDate, projectObj.EndDate);
+                Guid UserGuid = new Guid(projectObj.UserUUId);
+                var result = await _projectService.CreateNewProject(UserGuid, projectObj.Title, projectObj.Description, projectObj.TumbnailImageUrl, projectObj.BackgroundImageUrl, projectObj.StartDate, projectObj.EndDate);
 
                 if(result)
                 {
@@ -33,6 +35,7 @@ namespace NexusPilot_Projects_Service_src.Controllers
                 }
             } catch(Exception e)
             {
+                Console.WriteLine($"Error creating project: {e}");
                 return StatusCode(500, "Internal Server Error");
             }
         }
@@ -42,6 +45,7 @@ namespace NexusPilot_Projects_Service_src.Controllers
         public class ProjectCreationObject
         {
             [Required]
+            //It's expected the UserUUID will be received as a string and is later converted to Guid again
             public string UserUUId { get; set; }
 
             [Required]

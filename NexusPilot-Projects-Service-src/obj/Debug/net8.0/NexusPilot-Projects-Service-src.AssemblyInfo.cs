@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NexusPilot-Projects-Service-src")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b23f24f7bfb81c169451bf1eb3905e93ec4a8481")]
 [assembly: System.Reflection.AssemblyProductAttribute("NexusPilot-Projects-Service-src")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NexusPilot-Projects-Service-src")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
