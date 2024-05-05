@@ -23,8 +23,8 @@ namespace NexusPilot_Projects_Service_src.Controllers
         {
             try
             {
-                Guid UserGuid = new Guid(projectObj.UserUUId);
-                var result = await _projectService.CreateNewProject(UserGuid, projectObj.Title, projectObj.Description, projectObj.TumbnailImageUrl, projectObj.BackgroundImageUrl, projectObj.StartDate, projectObj.EndDate);
+               
+                var result = await _projectService.CreateNewProject(projectObj.UserUUId, projectObj.Title, projectObj.Description, projectObj.TumbnailImageUrl, projectObj.BackgroundImageUrl, projectObj.StartDate, projectObj.EndDate);
 
                 if(result)
                 {

@@ -33,11 +33,13 @@ namespace NexusPilot_Projects_Service_src.Services
         }
 
 
-        public async Task<bool> CreateNewProject(Guid userUUID, string projectTitle, string projectDescription, string projectTumbnailImageUrl, string projectBackgroundImageUrl, DateTime projectStartDate, DateTime projectEndDate)
+        public async Task<bool> CreateNewProject(string userUUID, string projectTitle, string projectDescription, string projectTumbnailImageUrl, string projectBackgroundImageUrl, DateTime projectStartDate, DateTime projectEndDate)
         {
             try
             {
-                Project newProject = new Project { OwnerId = userUUID, Title = projectTitle, Description = projectDescription, TumbnailImageUrl = projectTumbnailImageUrl, BackGroundImageUrl = projectBackgroundImageUrl, StartDate = projectStartDate, EndDate = projectEndDate };
+                Guid userGuid = new Guid(userUUID);
+
+                Project newProject = new Project { OwnerId = userGuid, Title = projectTitle, Description = projectDescription, TumbnailImageUrl = projectTumbnailImageUrl, BackGroundImageUrl = projectBackgroundImageUrl, StartDate = projectStartDate, EndDate = projectEndDate };
                 var result = await supabase.From<Project>().Insert(newProject);
 
                 if(result != null)
@@ -55,12 +57,14 @@ namespace NexusPilot_Projects_Service_src.Services
             }
         }
 
-        public async Task<(bool isSuccess, List<Project>? projects)> GetProjectsForAccount(Guid userUUID)
+        public async Task<(bool isSuccess, List<Project>? projects)> GetProjectsForAccount(string userUUID)
         {
             try
             {
+                var userGuid = new Guid(userUUID);
+
                 var result = await supabase.From<Project>()
-                    .Where(item => item.OwnerId == userUUID)
+                    .Where(item => item.OwnerId == userGuid)
                     .Get();
 
                 if(result != null)

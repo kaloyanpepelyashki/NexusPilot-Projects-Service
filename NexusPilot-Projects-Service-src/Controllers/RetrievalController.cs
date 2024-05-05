@@ -17,20 +17,19 @@ namespace NexusPilot_Projects_Service_src.Controllers
         }
 
         //To be changed to a get method
-        [HttpPost("allProjects")]
+        [HttpPost("allProjectsForUser")]
         public async Task<ActionResult> GetAllProjectsForUser([FromBody] string userUUID)
         {
             try
             {
-                //The UserUUID must be accessed through the header 
-                var userGuid = new Guid(userUUID);
+              
 
-                var result = await _projectService.GetProjectsForAccount(userGuid);
+                var result = await _projectService.GetProjectsForAccount(userUUID);
 
 
                 if (result.isSuccess)
                 {
-                    return Ok(result);
+                    return Ok(result.projects);
 
                 } else
                 {

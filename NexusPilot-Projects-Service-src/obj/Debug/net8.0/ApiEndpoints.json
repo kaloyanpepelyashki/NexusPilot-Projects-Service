@@ -18,7 +18,7 @@
   {
     "ContainingType": "NexusPilot_Projects_Service_src.Controllers.RetrievalController",
     "Method": "GetAllProjectsForUser",
-    "RelativePath": "api/Retrieval/allProjects",
+    "RelativePath": "api/Retrieval/allProjectsForUser",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
