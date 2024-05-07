@@ -8,9 +8,9 @@ jobs:
   Test:
     runs-on: ubuntu-latest
 
-    default:
+    defaults:
       run:
-        working-directory: NexusPilot-Task-Service-src
+        working-directory: NexusPilot-Projects-Service-src
 
     steps:
       - uses: actions/checkout@v4
