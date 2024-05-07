@@ -9,6 +9,7 @@ using System.Text.Json;
 
 namespace NexusPilot_Projects_Service_src.Services
 {
+    /*This class is in charge of handling all operations related to the project entity */ 
     public class ProjectService: IProjectService
     {
         private static ProjectService _instance;
@@ -92,6 +93,125 @@ namespace NexusPilot_Projects_Service_src.Services
             } catch(Exception e)
             {
                 throw new Exception($"{e}");
+            }
+        }
+
+        /* This method queries the projectusers table and gets all users, assigned to a project
+            The method will return {true, List<ProjectUser>} if the query was successful and {false, List<ProjectUser>}
+         */
+        public async Task<(bool isSuccess, List<ProjectUser> usersList)> GetAllProjectUsers(string projectUUID)
+        {
+            try
+            {
+                var projectGuid = new Guid(projectUUID);
+
+                var result = await supabase.From<ProjectUser>().Where(project => project.ProjectId == projectGuid).Get();
+
+                if(result != null)
+                {
+                    List<ProjectUser> usersList = new List<ProjectUser>();
+
+                    result.Models.ForEach(user =>
+                    {
+                        usersList.Add(new ProjectUser { ProjectId = user.ProjectId, UserId = user.UserId, UserNickName = user.UserNickName });
+                    });
+
+                    return (true, usersList);
+                }
+
+                return (false, new List<ProjectUser>());
+
+            } catch( Exception e )
+            {
+                throw;
+            }
+        }
+
+        protected async Task<bool> CheckProjectToUserIsValid(Guid projectGuid, Guid userGuid)
+        {
+            try
+            {
+                var result = await supabase.From<ProjectUser>().Where(item => item.ProjectId == projectGuid && item.UserId == userGuid).Get();
+
+                if(result != null)
+                {
+                    if(result.Models.Count > 0)
+                    {
+                        return false;
+                    }
+
+                }
+
+                return true;
+            } catch(Exception e)
+            {
+                throw;
+            }
+        }
+
+        //Test this method
+        public async Task<bool> AddUserToProject(string projectUUID, string userUUID, string userNickName)
+        {
+            try
+            {
+                Guid projectGuid = new Guid(projectUUID);
+                Guid userGuid = new Guid(userUUID);
+
+               bool operationIsValid = await CheckProjectToUserIsValid(projectGuid, userGuid);
+
+                if(operationIsValid)
+                {
+                    ProjectUser newProjectUser = new ProjectUser { ProjectId = projectGuid, UserId = userGuid, UserNickName = userNickName };
+
+                    var result = await supabase.From<ProjectUser>().Insert(newProjectUser);
+
+                    if(result.ResponseMessage.IsSuccessStatusCode)
+                    {
+                        return true;
+                    }
+
+                    return false;
+
+                } else
+                {
+                    throw new AlreadyExistsException("User already a member of this project");
+                }
+
+
+
+            } catch( Exception e )
+            {
+                throw;
+            }
+        }
+
+        public async Task<bool> CloseProject(string projectId)
+        {
+            try
+            {
+
+                var result = await supabase.From<Project>().Where(project => project.Id == projectId).Set(project => project.Closed, true).Update();
+
+                if(result != null )
+                {
+                    if(result.ResponseMessage.IsSuccessStatusCode)
+                    {
+                        if(result.Models.Count > 0)
+                        {
+                            return true;
+                        }
+
+                        throw new NoRecordFoundException("Project was not found");
+                    }
+
+                    return false;
+                }
+
+                return false;
+
+            } catch(Exception e)
+            {
+                throw;
             }
         }
     }

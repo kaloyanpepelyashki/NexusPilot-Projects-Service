@@ -47,6 +47,33 @@ namespace NexusPilot_Projects_Service_src.Controllers
                 return StatusCode(500, "Error getting projects");
             }
         }
+
+        //To be changed to a get method
+        [HttpPost("allUsersForProject")]
+        public async Task<ActionResult> GetAllUsersForProject([FromBody] string projectUUID)
+        {
+            try
+            {
+                var result = await _projectService.GetAllProjectUsers(projectUUID);
+
+                if(result.isSuccess)
+                {
+                    if (result.usersList.Count > 0)
+                    {
+                        return Ok(result.usersList);
+                    }
+
+                    return StatusCode(404, "No records found");
+                }
+
+                return StatusCode(500, "Error getting records");
+
+            } catch(Exception e)
+            {
+                Console.WriteLine($"Error getting users for project: {e}");
+                return StatusCode(500, "Internal Server Error");
+            }
+        }
         
     }
 }

@@ -27,6 +27,9 @@ namespace NexusPilot_Projects_Service_src.Models
         [Column("enddate")]
         public DateTime EndDate { get; set; }
 
+        [Column("closed")]
+        public bool Closed { get; set; }
+
         [Column("project_owneruuid")]
         public Guid OwnerId { get; set; }
 

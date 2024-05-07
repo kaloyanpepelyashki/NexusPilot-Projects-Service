@@ -16,6 +16,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "NexusPilot_Projects_Service_src.Controllers.MutationController",
+    "Method": "CloseProject",
+    "RelativePath": "api/Mutation/closeProject",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "projectUUID",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "NexusPilot_Projects_Service_src.Controllers.RetrievalController",
     "Method": "GetAllProjectsForUser",
     "RelativePath": "api/Retrieval/allProjectsForUser",
@@ -25,6 +41,22 @@
     "Parameters": [
       {
         "Name": "userUUID",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NexusPilot_Projects_Service_src.Controllers.RetrievalController",
+    "Method": "GetAllUsersForProject",
+    "RelativePath": "api/Retrieval/allUsersForProject",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "projectUUID",
         "Type": "System.String",
         "IsRequired": true
       }
