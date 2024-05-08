@@ -17,13 +17,12 @@ namespace NexusPilot_Projects_Service_src.Controllers
         }
 
         //To be changed to a get method
-        [HttpPost("allProjectsForUser")]
-        public async Task<ActionResult> GetAllProjectsForUser([FromBody] string userUUID)
+        [HttpGet("allProjectsForUser/{userUUID}")]
+        public async Task<ActionResult> GetAllProjectsForUser(string userUUID)
         {
             try
             {
               
-
                 var result = await _projectService.GetProjectsForAccount(userUUID);
 
 
@@ -49,8 +48,8 @@ namespace NexusPilot_Projects_Service_src.Controllers
         }
 
         //To be changed to a get method
-        [HttpPost("allUsersForProject")]
-        public async Task<ActionResult> GetAllUsersForProject([FromBody] string projectUUID)
+        [HttpGet("allUsersForProject/{projectUUID}")]
+        public async Task<ActionResult> GetAllUsersForProject(string projectUUID)
         {
             try
             {

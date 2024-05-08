@@ -17,7 +17,6 @@ namespace NexusPilot_Projects_Service_src.Controllers
             _projectService = ProjectService.GetInstance();
         }
 
-        //Test how this route behaves
         [HttpPatch("addUserToProject")]
         public async Task<ActionResult> AddUserToProject([FromBody] AddUserObject userObject)
         {

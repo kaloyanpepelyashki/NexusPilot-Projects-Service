@@ -16,6 +16,38 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "NexusPilot_Projects_Service_src.Controllers.DeletionController",
+    "Method": "DeleteProject",
+    "RelativePath": "api/Deletion/project/{projectUUID}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "projectUUID",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NexusPilot_Projects_Service_src.Controllers.MutationController",
+    "Method": "AddUserToProject",
+    "RelativePath": "api/Mutation/addUserToProject",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userObject",
+        "Type": "NexusPilot_Projects_Service_src.Controllers.MutationController\u002BAddUserObject",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "NexusPilot_Projects_Service_src.Controllers.MutationController",
     "Method": "CloseProject",
     "RelativePath": "api/Mutation/closeProject",
@@ -34,8 +66,8 @@
   {
     "ContainingType": "NexusPilot_Projects_Service_src.Controllers.RetrievalController",
     "Method": "GetAllProjectsForUser",
-    "RelativePath": "api/Retrieval/allProjectsForUser",
-    "HttpMethod": "POST",
+    "RelativePath": "api/Retrieval/allProjectsForUser/{userUUID}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -50,8 +82,8 @@
   {
     "ContainingType": "NexusPilot_Projects_Service_src.Controllers.RetrievalController",
     "Method": "GetAllUsersForProject",
-    "RelativePath": "api/Retrieval/allUsersForProject",
-    "HttpMethod": "POST",
+    "RelativePath": "api/Retrieval/allUsersForProject/{projectUUID}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [

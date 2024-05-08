@@ -46,6 +46,7 @@ namespace NexusPilot_Projects_Service_src.Services
                 if(result != null)
                 {
                     return true;
+
                 } else
                 {
                     return false;
@@ -208,6 +209,22 @@ namespace NexusPilot_Projects_Service_src.Services
                 }
 
                 return false;
+
+            } catch(Exception e)
+            {
+                throw;
+            }
+        }
+
+        public async Task<bool>  DeleteProject(string projectUUID)
+        {
+            try
+            {
+                var projectGuid = new Guid(projectUUID);
+
+                await supabase.From<ProjectUser>().Where(item => item.ProjectId == projectGuid).Delete();
+                await supabase.From<Project>().Where(project => project.Id == projectUUID).Delete();
+                return true;
 
             } catch(Exception e)
             {

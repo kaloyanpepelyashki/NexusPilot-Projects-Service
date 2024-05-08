@@ -11,15 +11,15 @@ namespace NexusPilot_Projects_Setvice.Test
     public class ProjectServiceTest
     {
         [Fact]
-        public void TaskService_GetInstance_ShouldReturnTaskServiceInstance()
+        public void TaskService_GetInstance_ShouldReturnProjectServiceInstance()
         {
             //Arrange
 
             //Act
-            var taskService = ProjectService.GetInstance();
+            var projectService = ProjectService.GetInstance();
 
             //Assert
-            taskService.Should().BeOfType<ProjectService>();
+            projectService.Should().BeOfType<ProjectService>();
         }
     }
 }
