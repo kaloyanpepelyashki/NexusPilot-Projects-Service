@@ -48,10 +48,10 @@ jobs:
       - name: Build and push Docker image to Docker hub
         uses: docker/build-push-action@v5
         with:
-          context: ./noeTaskManagerService.Primary
-          file: ./noeTaskManagerService.Primary/Dockerfile
+          context: ./NexusPilot-Projects-Service-src
+          file: ./NexusPilot-Projects-Service-src/Dockerfile
           push: true
-          tags: ${{secrets.DOCKER_USERNAME}}/noetaskmanager-service:latest
+          tags: ${{secrets.DOCKER_USERNAME}}/nexuspilot-projects-service:latest
 
       - name: Depoloy to Render
         run: |
