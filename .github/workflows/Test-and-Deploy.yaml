@@ -50,7 +50,8 @@ jobs:
           file: ./NexusPilot-Projects-Service-src/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/nexuspilot-projects-service:latest
-
+      - name: Install jq
+        run: sudo apt-get install -y jq
       - name: Depoloy to Render
         run: |
           JSON_PAYLOAD=$(jq -n \
@@ -61,3 +62,5 @@ jobs:
             -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
             -H "Content-Type: application/json" \
             -d "$JSON_PAYLOAD"
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
