@@ -53,8 +53,11 @@ jobs:
 
       - name: Depoloy to Render
         run: |
+          JSON_PAYLOAD=$(jq -n \
+                         --arg image "$DOCKER_USERNAME/nexuspilot-projects-service:latest" \
+                         '{image: $image}')
           curl -X PATCH \
-            https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }} \
+            "https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }}" \
             -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
             -H "Content-Type: application/json" \
-            -d '{"image": "${{ secrets.DOCKER_USERNAME }}/nexuspilot-projects-service:latest"}'
+            -d "$JSON_PAYLOAD"
