@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NexusPilot_Projects_Service_src.Services;
 
@@ -16,7 +17,7 @@ namespace NexusPilot_Projects_Service_src.Controllers
             _projectService = ProjectService.GetInstance();
         }
 
-
+        [Authorize]
         [HttpDelete("project/{projectUUID}")]
         public async Task<ActionResult> DeleteProject(string projectUUID)
         {

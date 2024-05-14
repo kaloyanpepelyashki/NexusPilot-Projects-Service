@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NexusPilot_Projects_Service_src.Models.ExceptionModels;
 using NexusPilot_Projects_Service_src.Services;
@@ -16,7 +17,7 @@ namespace NexusPilot_Projects_Service_src.Controllers
             _projectService = ProjectService.GetInstance();
         }
 
-        //To be changed to a get method
+        [Authorize]
         [HttpGet("allProjectsForUser/{userUUID}")]
         public async Task<ActionResult> GetAllProjectsForUser(string userUUID)
         {
@@ -47,6 +48,7 @@ namespace NexusPilot_Projects_Service_src.Controllers
                 return StatusCode(500, "Error getting projects");
             }
         }
+        [Authorize]
         [HttpGet("project/{projectUUID}")] 
         public async Task<ActionResult> GetProjectById(string projectUUID)
         {
@@ -68,7 +70,7 @@ namespace NexusPilot_Projects_Service_src.Controllers
             }
         }
 
-        //To be changed to a get method
+        [Authorize]
         [HttpGet("allUsersForProject/{projectUUID}")]
         public async Task<ActionResult> GetAllUsersForProject(string projectUUID)
         {

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NexusPilot_Projects_Service_src.Models.ExceptionModels;
 using NexusPilot_Projects_Service_src.Services;
@@ -17,6 +18,7 @@ namespace NexusPilot_Projects_Service_src.Controllers
             _projectService = ProjectService.GetInstance();
         }
 
+        [Authorize]
         [HttpPatch("addUserToProject")]
         public async Task<ActionResult> AddUserToProject([FromBody] AddUserObject userObject)
         {
@@ -41,7 +43,7 @@ namespace NexusPilot_Projects_Service_src.Controllers
             }
 
         }
-
+        [Authorize]
         [HttpPatch("closeProject")]
         public async Task<ActionResult> CloseProject([FromBody] string projectUUID)
         {
