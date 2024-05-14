@@ -38,12 +38,33 @@ namespace NexusPilot_Projects_Service_src.Controllers
             }
             catch (EmptyResultException e) 
             {
+                Console.WriteLine($"Error getting all projects for user: {e}");
                 return StatusCode(400, $"{e}");
             }
             catch (Exception e)
             {
                 Console.WriteLine($"Error getting projects: {e}");
                 return StatusCode(500, "Error getting projects");
+            }
+        }
+        [HttpGet("project/{projectUUID}")] 
+        public async Task<ActionResult> GetProjectById(string projectUUID)
+        {
+            try
+            {
+                var result = await _projectService.GetProjectById(projectUUID);
+
+                if(result.isSuccess)
+                {
+                    return Ok(result.projectItem);
+                }
+
+                return StatusCode(404, "No record found");
+
+            } catch(Exception e)
+            {
+                Console.WriteLine($"Error getting project: {e}");
+                return StatusCode(500, "Internal Server Error");
             }
         }
 

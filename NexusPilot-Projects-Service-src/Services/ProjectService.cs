@@ -97,6 +97,34 @@ namespace NexusPilot_Projects_Service_src.Services
             }
         }
 
+        /*This method returns a single project item, based on the projectUUID provided*/
+        public async Task<(bool isSuccess, Project projectItem)> GetProjectById(string projectUUID)
+        {
+            try
+            {
+
+                var result = await supabase.From<Project>().Where(project => project.Id == projectUUID).Get();
+
+                if (result != null)
+                {
+                    if (result.Models.Count > 0)
+                    {
+                        Project returnedProject = new Project { Id = result.Models[0].Id, Title = result.Models[0].Title, Description = result.Models[0].Description, TumbnailImageUrl = result.Models[0].TumbnailImageUrl, BackGroundImageUrl = result.Models[0].BackGroundImageUrl, StartDate = result.Models[0].StartDate, EndDate = result.Models[0].EndDate, Closed = result.Models[0].Closed, OwnerId = result.Models[0].OwnerId };
+                        return (true, returnedProject);
+                    }
+
+                }
+
+                return (false, new Project());
+
+
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
         /* This method queries the projectusers table and gets all users, assigned to a project
             The method will return {true, List<ProjectUser>} if the query was successful and {false, List<ProjectUser>}
          */
@@ -128,6 +156,9 @@ namespace NexusPilot_Projects_Service_src.Services
             }
         }
 
+        /* This method checks if a user is already assigned to a project 
+           If the user is already assigned to the project, this method will returnt false;
+         */
         protected async Task<bool> CheckProjectToUserIsValid(Guid projectGuid, Guid userGuid)
         {
             try
@@ -150,7 +181,6 @@ namespace NexusPilot_Projects_Service_src.Services
             }
         }
 
-        //Test this method
         public async Task<bool> AddUserToProject(string projectUUID, string userUUID, string userNickName)
         {
             try
