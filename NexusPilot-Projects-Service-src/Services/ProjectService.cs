@@ -75,7 +75,7 @@ namespace NexusPilot_Projects_Service_src.Services
 
                      result.Models.ForEach(item =>
                     {
-                        returnedProjects.Add(new Project { Id = item.Id, Title = item.Title, Description = item.Description, TumbnailImageUrl = item.TumbnailImageUrl, BackGroundImageUrl = item.BackGroundImageUrl });
+                        returnedProjects.Add(new Project { Id = item.Id, Title = item.Title, Description = item.Description, TumbnailImageUrl = item.TumbnailImageUrl, Closed = item.Closed, BackGroundImageUrl = item.BackGroundImageUrl });
                     });
 
     

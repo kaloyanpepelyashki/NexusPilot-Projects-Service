@@ -18,7 +18,7 @@ namespace NexusPilot_Projects_Service_src.Controllers
             _projectService = ProjectService.GetInstance();
         }
 
-        [Authorize]
+ 
         [HttpPost("project")]
         //Expects to receive a json object
         public async Task<ActionResult> CreateProject([FromBody] ProjectCreationObject projectObj)
