@@ -7,19 +7,20 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NexusPilot_Projects_Service_src.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class MutationController : ControllerBase
     {
         private readonly ProjectService _projectService;
         
-        public MutationController()
+        public MutationController(ProjectService projectService)
         {
-            _projectService = ProjectService.GetInstance();
+            _projectService = projectService;
         }
 
         [Authorize]
         [HttpPatch("addUserToProject")]
+        //Expects to receive a json object
         public async Task<ActionResult> AddUserToProject([FromBody] AddUserObject userObject)
         {
             try
@@ -45,6 +46,7 @@ namespace NexusPilot_Projects_Service_src.Controllers
         }
         [Authorize]
         [HttpPatch("closeProject")]
+        //Expects to receive a json object
         public async Task<ActionResult> CloseProject([FromBody] string projectUUID)
         {
             try

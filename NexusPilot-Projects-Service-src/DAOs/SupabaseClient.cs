@@ -12,7 +12,7 @@ namespace NexusPilot_Projects_Service_src.DAOs
         protected SupabaseOptions Options;
         public Supabase.Client SupabaseAccessor { get; }
 
-        private SupabaseClient()
+        public SupabaseClient()
         {
             _configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json", optional: true).AddEnvironmentVariables().Build();
             SupabaseProjectUrl = _configuration["SupabaseConfig:ProjectUrl"];
@@ -24,14 +24,5 @@ namespace NexusPilot_Projects_Service_src.DAOs
             SupabaseAccessor = new Supabase.Client(SupabaseProjectUrl, SupabaseApiKey, Options);
         }
 
-        public static SupabaseClient GetInstance()
-        {
-            if (_instance == null)
-            {
-                _instance = new SupabaseClient();
-            }
-
-            return _instance;
-        }
     }
 }

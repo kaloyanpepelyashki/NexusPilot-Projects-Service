@@ -134,3 +134,7 @@ C:\Users\Kaloyan\Desktop\My Projects and works\Projects\PWA-NexusPilot-Task-Mana
 C:\Users\Kaloyan\Desktop\My Projects and works\Projects\PWA-NexusPilot-Task-Manager\NexusPilot-Projects-Service\NexusPilot-Projects-Setvice.Test\obj\Debug\net8.0\NexusPilot-Projects-Setvice.Test.pdb
 C:\Users\Kaloyan\Desktop\My Projects and works\Projects\PWA-NexusPilot-Task-Manager\NexusPilot-Projects-Service\NexusPilot-Projects-Setvice.Test\obj\Debug\net8.0\NexusPilot-Projects-Setvice.Test.genruntimeconfig.cache
 C:\Users\Kaloyan\Desktop\My Projects and works\Projects\PWA-NexusPilot-Task-Manager\NexusPilot-Projects-Service\NexusPilot-Projects-Setvice.Test\obj\Debug\net8.0\ref\NexusPilot-Projects-Setvice.Test.dll
+C:\Users\Kaloyan\Desktop\My Projects and works\Projects\PWA-NexusPilot-Task-Manager\NexusPilot-Projects-Service\NexusPilot-Projects-Setvice.Test\bin\Debug\net8.0\System.Web.Cors.dll
+C:\Users\Kaloyan\Desktop\My Projects and works\Projects\PWA-NexusPilot-Task-Manager\NexusPilot-Projects-Service\NexusPilot-Projects-Setvice.Test\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Kaloyan\Desktop\My Projects and works\Projects\PWA-NexusPilot-Task-Manager\NexusPilot-Projects-Service\NexusPilot-Projects-Setvice.Test\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Kaloyan\Desktop\My Projects and works\Projects\PWA-NexusPilot-Task-Manager\NexusPilot-Projects-Service\NexusPilot-Projects-Setvice.Test\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll

@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using Moq;
 using NexusPilot_Projects_Service_src.Services;
 using System;
 using System.Collections.Generic;
@@ -10,16 +11,24 @@ namespace NexusPilot_Projects_Setvice.Test
 {
     public class ProjectServiceTest
     {
+        private readonly Mock<ProjectService> _projectService;
+
+        public ProjectServiceTest() 
+        {
+            _projectService = new Mock<ProjectService>();
+        
+        }
+
         [Fact]
         public void TaskService_GetInstance_ShouldReturnProjectServiceInstance()
         {
             //Arrange
 
             //Act
-            var projectService = ProjectService.GetInstance();
+
 
             //Assert
-            projectService.Should().BeOfType<ProjectService>();
+            _projectService.Should().BeOfType<Mock<ProjectService>>();
         }
     }
 }

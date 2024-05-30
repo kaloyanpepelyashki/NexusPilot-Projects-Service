@@ -7,18 +7,18 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NexusPilot_Projects_Service_src.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class CreationController : ControllerBase
     {
         private ProjectService _projectService;
 
-        public CreationController()
+        public CreationController(ProjectService projectService)
         {
-            _projectService = ProjectService.GetInstance();
+            _projectService = projectService;
         }
 
- 
+        [Authorize]
         [HttpPost("project")]
         //Expects to receive a json object
         public async Task<ActionResult> CreateProject([FromBody] ProjectCreationObject projectObj)

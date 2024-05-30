@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using NexusPilot_Projects_Service_src.DAOs;
+using NexusPilot_Projects_Service_src.Services;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,6 +31,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers().AddNewtonsoftJson();
+//Registers DAO as a singleton and prepares for DI
+builder.Services.AddSingleton<SupabaseClient>();
+//Registers the service as a singleton and prepares for DI
+builder.Services.AddScoped<ProjectService>();
+
 builder.Services.AddAuthentication(x =>
 {
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

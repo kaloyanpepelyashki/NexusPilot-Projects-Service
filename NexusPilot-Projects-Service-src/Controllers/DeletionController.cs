@@ -5,16 +5,16 @@ using NexusPilot_Projects_Service_src.Services;
 
 namespace NexusPilot_Projects_Service_src.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class DeletionController : ControllerBase
     {
         private readonly ProjectService _projectService;
 
 
-        public DeletionController()
+        public DeletionController(ProjectService projectService)
         {
-            _projectService = ProjectService.GetInstance();
+            _projectService = projectService;
         }
 
         [Authorize]

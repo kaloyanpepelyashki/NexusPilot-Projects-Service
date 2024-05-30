@@ -6,15 +6,15 @@ using NexusPilot_Projects_Service_src.Services;
 
 namespace NexusPilot_Projects_Service_src.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class RetrievalController : ControllerBase
     {
         protected ProjectService _projectService;
 
-        public RetrievalController()
+        public RetrievalController(ProjectService projectService)
         {
-            _projectService = ProjectService.GetInstance();
+            _projectService = projectService;
         }
 
         [Authorize]

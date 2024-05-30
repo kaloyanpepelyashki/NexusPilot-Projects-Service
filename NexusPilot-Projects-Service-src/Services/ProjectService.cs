@@ -13,31 +13,25 @@ namespace NexusPilot_Projects_Service_src.Services
     public class ProjectService: IProjectService
     {
         private static ProjectService _instance;
-        protected SupabaseClient supabaseClient;
+        protected SupabaseClient _supabaseClient;
         protected Client supabase;
 
-        private ProjectService() 
+        //Supabase Client DAO is dependency injected into the service
+        public ProjectService(SupabaseClient supabaseClient) 
         {
-            supabaseClient = SupabaseClient.GetInstance();
-            supabase = supabaseClient.SupabaseAccessor;
+            _supabaseClient = supabaseClient;
+            supabase = _supabaseClient.SupabaseAccessor;
 
         }
 
-        public static ProjectService GetInstance()
-        {
-            if(_instance == null)
-            {
-                _instance = new ProjectService();
-            }
 
-            return _instance;
-        }
-
-
+        /*This method is in charge of creating a new project
+         The method queries the database and inserts a new record with the values, passed as constructor parameter to the mmethod*/
         public async Task<bool> CreateNewProject(string userUUID, string projectTitle, string projectDescription, string projectTumbnailImageUrl, string projectBackgroundImageUrl, DateTime projectStartDate, DateTime projectEndDate)
         {
             try
             {
+                //Necessary to convert the userUUID string to a Guid
                 Guid userGuid = new Guid(userUUID);
 
                 Project newProject = new Project { OwnerId = userGuid, Title = projectTitle, Description = projectDescription, TumbnailImageUrl = projectTumbnailImageUrl, BackGroundImageUrl = projectBackgroundImageUrl, StartDate = projectStartDate, EndDate = projectEndDate };
@@ -63,6 +57,7 @@ namespace NexusPilot_Projects_Service_src.Services
         {
             try
             {
+                //Necessary to convert the userUUID string to a Guid
                 var userGuid = new Guid(userUUID);
 
                 var result = await supabase.From<Project>()
@@ -216,6 +211,8 @@ namespace NexusPilot_Projects_Service_src.Services
             }
         }
 
+        /*This method is in charge of closing a project
+         The method queries the database and switches the closed value to true, of the targeted by uuid record */
         public async Task<bool> CloseProject(string projectId)
         {
             try
